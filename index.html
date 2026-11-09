@@ -1082,7 +1082,7 @@
         .about-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; align-items: center; }
         .about-text h2 { font-size: 34px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 16px; }
         .about-text p { color: var(--text-secondary); margin-bottom: 14px; }
-        .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+        .stat-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 28px; }
         .stat { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 16px; }
         .stat b { display: block; font-family: var(--font-mono); font-size: 20px; color: var(--accent-emerald); }
         .stat span { font-size: 12px; color: var(--text-secondary); }
@@ -1105,6 +1105,105 @@
             .contact-grid, .stat-row, .serve-grid { grid-template-columns: 1fr; }
             .home-section { padding: 64px 0; }
         }
+
+        /* ===== Mobile-friendly enhancements (small screens only; desktop is unchanged) ===== */
+        @media (max-width: 768px) {
+            html { scroll-padding-top: 104px; }
+            .hero { overflow-x: hidden; overflow-x: clip; }
+
+            /* Top contact bar: wrap instead of getting cut off */
+            .top-utility-bar { font-size: 12px; }
+            .top-utility-content { justify-content: center; text-align: center; gap: 6px; }
+            .utility-contacts { flex-wrap: wrap; justify-content: center; gap: 2px 16px; }
+            .utility-contacts a { font-size: 12px; padding: 4px 0; }
+
+            /* Header: logo + tool button on row one, full swipeable nav on row two */
+            .nav-content { height: auto; flex-wrap: wrap; padding-top: 10px; row-gap: 2px; }
+            .header-actions { order: 2; }
+            nav { order: 3; flex: 0 0 100%; min-width: 0; margin: 0 -24px; padding: 0 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+            nav::-webkit-scrollbar { display: none; }
+            nav ul { width: max-content; gap: 2px; }
+            nav li.secondary { display: block; }
+            nav a { display: block; padding: 9px 10px; }
+
+            /* Bigger touch targets */
+            .btn { min-height: 44px; }
+            .qty-btn { width: 36px; height: 36px; font-size: 18px; }
+            .qty-val { width: 28px; }
+            .footer-col a { display: inline-block; padding: 4px 0; }
+
+            /* Spacing and type */
+            .hero { padding: 48px 0; }
+            .home-hero { padding: 40px 0 44px; }
+            .hero-split, .about-grid { gap: 32px; }
+            .home-hero .hero-highlights { margin-top: 36px; }
+            .hero p { font-size: 16px; }
+            .services-section, .pricing-section, .calculator-section, .process-section, .faq-section { padding: 64px 0; }
+            .section-header { margin-bottom: 36px; }
+            .section-header h2, .about-text h2 { font-size: 28px; }
+            .service-card { padding: 24px; }
+            .process-card { padding: 22px 18px; }
+            footer { padding: 48px 0 28px; }
+            .footer-grid { gap: 28px; margin-bottom: 32px; }
+            .copyright-bar { flex-direction: column; align-items: flex-start; }
+
+            /* Pricing table becomes stacked cards (no sideways scrolling) */
+            .pricing-table { min-width: 0; }
+            .pricing-table, .pricing-table tbody, .pricing-table tr, .pricing-table td { display: block; width: 100%; }
+            .pricing-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+            .pricing-table tbody tr { padding: 16px 18px; border-bottom: 1px solid var(--border-color); }
+            .pricing-table tbody tr:last-child { border-bottom: none; }
+            .pricing-table td, .pricing-table tr:last-child td { padding: 5px 0; border-bottom: none; }
+            .pricing-table td:first-child { padding-top: 0; }
+            .pricing-table td:nth-child(n+2):nth-child(-n+4) { display: flex; justify-content: space-between; gap: 16px; text-align: right; }
+            .pricing-table td:nth-child(n+2):nth-child(-n+4)::before { flex: 0 0 auto; padding-top: 2px; color: var(--text-muted); font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; text-align: left; }
+            .pricing-table td:nth-child(2)::before { content: 'Turnaround'; }
+            .pricing-table td:nth-child(3)::before { content: 'Key Deliverables'; }
+            .pricing-table td:nth-child(4)::before { content: 'Standard Price'; }
+            .pricing-table td:last-child { padding-top: 10px; }
+            .pricing-table td:last-child .btn { width: 100%; }
+
+            /* Calculator */
+            .calculator-box { padding: 20px; gap: 24px; }
+            .calculator-box > * { min-width: 0; }
+            .calc-item { padding: 14px; gap: 12px; }
+            .calc-item .price-badge { flex-shrink: 0; }
+            .calc-summary-panel { padding: 20px; }
+            .calc-breakdown-item { gap: 12px; }
+            .calc-total-price { font-size: 30px; }
+
+            /* FAQ */
+            .faq-trigger { padding: 16px; }
+            .faq-icon { flex-shrink: 0; }
+            .faq-content { padding: 0 16px 16px; }
+
+            /* Proposal form modal: fits the screen, no iOS zoom-on-focus */
+            .modal-backdrop { padding: 12px; }
+            .modal-box { padding: 24px 18px; max-height: calc(100vh - 24px); max-height: calc(100dvh - 24px); }
+            .modal-box h3 { padding-right: 32px; }
+            .modal-close-btn { top: 10px; right: 10px; width: 44px; height: 44px; font-size: 28px; }
+            .form-control { font-size: 16px; }
+        }
+        @media (max-width: 520px) {
+            .hero h1, .home-hero h1 { font-size: 30px; }
+            .badge-pill { font-size: 11px; padding: 6px 12px; line-height: 1.4; }
+            .badge-dot { flex-shrink: 0; }
+            .hero-actions { flex-direction: column; align-items: stretch; gap: 12px; }
+            .hero-actions .btn, .more-row .btn { width: 100%; }
+            .more-row { display: flex; flex-direction: column; gap: 12px; }
+            .services-grid, .teaser-grid { grid-template-columns: 1fr; }
+            .section-header h2, .about-text h2 { font-size: 26px; }
+            .service-card h3 { font-size: 18px; }
+        }
+        @media (max-width: 360px) {
+            .hero h1, .home-hero h1 { font-size: 27px; }
+        }
+
+        /* ===== Lock horizontal movement (no side-to-side drifting) ===== */
+        html, body { max-width: 100%; overscroll-behavior-x: none; }
+        html { touch-action: pan-y pinch-zoom; }
+        .hero { overflow-x: hidden; overflow-x: clip; }
+        nav, .table-responsive { touch-action: pan-x pan-y; }
     </style>
 </head>
 <body>
@@ -1206,11 +1305,10 @@
                     </figure>
                     <div class="about-text">
                         <h2>About Albright Environmental Consulting</h2>
-                        <p>Albright Environmental Consulting, LLC is an independent environmental consulting firm and a subsidiary of Fortuna Holdings, LLC. We provide environmental due diligence, risk assessment, and site inspection services for commercial real estate transactions and construction sites.</p>
+                        <p>Albright Environmental Consulting, LLC is an independent environmental consulting firm. We provide environmental due diligence, risk assessment, and site inspection services for commercial real estate transactions and construction sites.</p>
                         <p>Every report is performed by or under the responsible charge of a qualified Environmental Professional, as defined in 40 CFR § 312.10, and prepared in general accordance with ASTM E1527-21 and the EPA All Appropriate Inquiries Rule. Our pricing is published up front, so you can budget a project before you call.</p>
                         <div class="stat-row">
                             <div class="stat"><b>48–72 hr</b><span>Screening turnaround</span></div>
-                            <div class="stat"><b>$250</b><span>Starting price per report</span></div>
                             <div class="stat"><b>EP-signed</b><span>Every final report</span></div>
                         </div>
                     </div>
@@ -1218,22 +1316,7 @@
             </div>
         </section>
 
-        <section id="what-we-do" class="home-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>What We Do</h2>
-                    <p>From a quick desktop screening to a full Phase I ESA and ongoing site compliance monitoring.</p>
-                </div>
-                <div class="teaser-grid">
-                    <div class="service-card"><div><div class="service-header-row"><span class="service-num">01</span></div><h3>Desktop Screening &amp; Records Review</h3><p>Environmental Screening Reports, raw database searches, and Record Search with Risk Assessment (RSRA) for early-stage and SBA lending needs.</p></div><div class="service-footer"><div class="service-price">From $250</div><a href="services.html#services" class="text-link">Details →</a></div></div>
-                    <div class="service-card"><div><div class="service-header-row"><span class="service-num">02</span></div><h3>Phase I ESA (ASTM E1527-21)</h3><p>Full-scope Environmental Site Assessment with physical site reconnaissance, historical research, and EP-signed commercial-grade reporting.</p></div><div class="service-footer"><div class="service-price">From $2,200</div><a href="services.html#services" class="text-link">Details →</a></div></div>
-                    <div class="service-card"><div><div class="service-header-row"><span class="service-num">03</span></div><h3>Site Compliance Inspections</h3><p>Erosion &amp; sediment control checks and post-construction stormwater (PCSM) facility inspections with photo logs and written reports.</p></div><div class="service-footer"><div class="service-price">$250 <span>/ site visit</span></div><a href="services.html#services" class="text-link">Details →</a></div></div>
-                </div>
-                <div class="more-row"><a href="services.html" class="btn btn-primary">See All Services &amp; Pricing</a></div>
-            </div>
-        </section>
-
-        <section id="serve" class="home-section alt">
+        <section id="serve" class="home-section">
             <div class="container">
                 <div class="section-header">
                     <h2>Who We Serve</h2>
